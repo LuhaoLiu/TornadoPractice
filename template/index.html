@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+</head>
+<body>
+<h2>Welcome, {{ user.username }}</h2>
+<h3>Your email address is {{ user.email }}</h3>
+<ul>
+    {% for url in urls %}
+    <li><a href="{{ url }}">{{ urls[url] }}</a></li>
+    {% end %}
+</ul>
+</body>
+</html>

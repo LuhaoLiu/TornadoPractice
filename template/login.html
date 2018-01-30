@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+</head>
+<body>
+<h2>Login: Entry your username in the following textbox.</h2>
+{% if text is not None%}
+<p class="attention"><b>{{ text }}</b></p>
+{% end %}
+<form method="post">
+    {% module xsrf_form_html() %}
+    <p>Username or Email:<input type="text" name="user" value="{{ default['user'] }}"/></p>
+    <p>Password:<input type="password" name="password" /></p>
+    <p><input type="checkbox" name="remember" value="Remember" checked>Remember me for 30 days</p>
+    <input type="submit" value="Login" />
+</form>
+<h4 class="attention">Do not have an account? Chick <a href="register">here</a> to register.</h4>
+</body>
+</html>

@@ -5,7 +5,7 @@ Used packages: `pymysql`, `tornado`
 
 **Structure of database**
 
-`ws_account`:
+* `ws_account`:
 
 
 | Field    | Type             | Null | Key | Default | Extra          |
@@ -16,7 +16,8 @@ Used packages: `pymysql`, `tornado`
 | password | varchar(64)      | NO   |     | NULL    |                |
 | reg_time | datetime         | YES  |     | NULL    |                |
 | session  | varchar(64)      | YES  |     | NULL    |                |
-`ws_record`:
+
+* `ws_record`:
 
 
 | Field   | Type                | Null | Key | Default | Extra          |

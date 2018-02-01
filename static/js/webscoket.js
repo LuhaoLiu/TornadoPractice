@@ -1,16 +1,16 @@
-var ws = new WebSocket("ws://localhost:2333/ws")
+var ws = new WebSocket("ws://"+ window.location.host + "/ws")
 
 
 ws.onmessage = function (event) {
 
     var data = JSON.parse(event.data);
-    username = data.username;
-    msg = data.message;
+    var username = data.username;
+    var msg = data.message;
 
     var content = document.getElementById("content");
     var temp = document.getElementById("temp");
     temp.innerText = ": " + msg + '\n';
-    initHTML = temp.innerHTML;
+    var initHTML = temp.innerHTML;
     temp.innerHTML = '';
     content.innerHTML = content.innerHTML + '<a href="user/' + username + '" target="_blank">' + username + '</a>' + initHTML;
 

@@ -30,3 +30,8 @@ Used packages: `pymysql`, `tornado`
 ## Version 1
 Register and login function  
 Online chat function supported by webscoket  
+
+### Version 1.0.1
+Save server information and mysql information in the json file 
+`/info/server.json` and `/info/mysql.json` 
+instead of saving in the source code.

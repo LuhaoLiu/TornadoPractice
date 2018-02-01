@@ -1,15 +1,16 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
-from base import BaseHandler, database
+from base import BaseHandler, database, info_load_from_json
 from index import IndexHandler
 from confirm import LoginHandler, LogoutHandler, RegisterHandler
 from account import UserHandler
 from webscoket import WSServerHandler, WSUserHandler
 from os import path
+import json
 
 
 settings = dict(
-    cookie_secret="a02i%fJIi28HI398ufTf$u84)91n^d2N",
+    cookie_secret="DEFAULT",
     login_url=r"/login",
     autoreload=True,
     static_path=path.join(path.realpath(path.dirname(__file__)), "static"),
@@ -30,8 +31,11 @@ def make_app():
 
 
 if __name__ == "__main__":
+    server_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "server.json"))
+    settings.update(cookie_secret=server_info.get("cookie_secret"))
     app = make_app()
-    app.listen(2333)
+    app.listen(server_info.get("port"))
+    print("Server successfully started.")
     try:
         IOLoop.current().start()
     except KeyboardInterrupt:

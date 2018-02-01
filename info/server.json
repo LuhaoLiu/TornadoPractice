@@ -1,0 +1,4 @@
+{
+  "port": "2333",
+  "cookie_secret": "**TODO:GENERATE_YOUR_COOKIE_SECRET**"
+}

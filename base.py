@@ -1,6 +1,8 @@
 from tornado.web import RequestHandler
 from re import match
+from os import path
 import pymysql
+import json
 
 
 def has_user(username, email):
@@ -36,6 +38,13 @@ def email_check(email):
         return 'valid'
 
 
+def info_load_from_json(path):
+    f = open(path)
+    info = json.load(f)
+    f.close()
+    return info
+
+
 class Database:
 
     def __init__(self, database):
@@ -43,7 +52,6 @@ class Database:
 
     def query(self, table_name, select='*', where='true'):
         query_sql = """SELECT %s FROM %s WHERE %s;""" % (select, table_name, where)
-        print(query_sql)
         cursor = self.database.cursor()
         cursor.execute(query_sql)
         return cursor.fetchall()
@@ -58,7 +66,6 @@ class Database:
             insert_sql += ("'" + values[value] + "', ")
         insert_sql = insert_sql[0:len(insert_sql) - 2]
         insert_sql += ');'
-        print(insert_sql)
         cursor = self.database.cursor()
         cursor.execute(insert_sql)
         self.database.commit()
@@ -69,17 +76,20 @@ class Database:
             update_sql += """%s='%s', """ % (key, values[key])
         update_sql = update_sql[0:len(update_sql) - 2]
         update_sql += """ WHERE %s;""" % where
-        print(update_sql)
         cursor = self.database.cursor()
         cursor.execute(update_sql)
         self.database.commit()
-
 
     def close(self):
         self.database.close()
 
 
-database = Database(pymysql.connect("localhost", "ws_admin", "!AaBbCc13579!", "ws"))
+database_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "mysql.json"))
+database = Database(pymysql.connect(host=str(database_info.get("mysql_host")),
+                                    port=int(database_info.get("mysql_port")),
+                                    user=str(database_info.get("mysql_user")),
+                                    passwd=str(database_info.get("mysql_password")),
+                                    database=str(database_info.get("database_name"))))
 
 
 class User:

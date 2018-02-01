@@ -1,0 +1,7 @@
+{
+  "mysql_host": "localhost",
+  "mysql_port": "3306",
+  "mysql_user": "ws_admin",
+  "mysql_password": "Default_PWD0",
+  "database_name": "ws"
+}

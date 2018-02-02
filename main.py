@@ -6,7 +6,6 @@ from confirm import LoginHandler, LogoutHandler, RegisterHandler
 from account import UserHandler
 from webscoket import WSServerHandler, WSUserHandler
 from os import path
-import json
 
 
 settings = dict(

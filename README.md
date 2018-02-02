@@ -1,5 +1,6 @@
 # TornadoPractice
-Practice for using tornado
+Practice for using tornado.  
+Online multiplayer chat website with authentication function.
 
 Used packages: `pymysql`, `tornado`  
 
@@ -27,11 +28,13 @@ Used packages: `pymysql`, `tornado`
 | content | text                | NO   |     | NULL    |                |
 | date    | datetime            | YES  |     | NULL    |                |
 
-## Version 1
+## Change Log
+
+### Version 1
 Register and login function  
 Online chat function supported by webscoket  
 
-### Version 1.0.1
+#### Version 1.0.1
 Save server information and mysql information in the json file 
 `/info/server.json` and `/info/mysql.json` 
 instead of saving in the source code.

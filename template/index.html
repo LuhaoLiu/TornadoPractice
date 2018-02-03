@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <title>Welcome</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/index.css') }}" />
 </head>
 <body>
-<h2>Welcome, {{ user.username }}</h2>
-<h3>Your email address is {{ user.email }}</h3>
-<ul>
-    {% for url in urls %}
-    <li><a href="{{ url }}">{{ urls[url] }}</a></li>
-    {% end %}
-</ul>
+<div id="index_header">
+    <a class="index_header_page" href="/">Index</a>
+    <div id="index_header_user">
+        <span>{{ user.username }}</span>
+        <div id="index_header_user_content">
+            <a class="index_header_text" href="/user/{{ user.username }}">Profile</a>
+            <hr class="index_header_hr" />
+            <a class="index_header_text" href="/logout">Logout</a>
+        </div>
+    </div>
+</div>
+<div id="index_body">
+    <h2>Welcome, {{ user.username }}</h2>
+    <h3>Your email address is {{ user.email }}</h3>
+</div>
 </body>
 </html>

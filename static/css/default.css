@@ -29,6 +29,9 @@ h6 {
 input {
     font-family: Monaco;
 }
+span {
+    font-family: Monaco;
+}
 .attention {
     color: orangered;
     font-size: 12px;

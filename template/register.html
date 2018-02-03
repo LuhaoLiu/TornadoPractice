@@ -2,21 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <title>Register</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/register.css') }}" />
 </head>
 <body>
-<h2>Register: Please entry your email, username and password</h2>
-{% if text is not None%}
-<p class="attention"><b>{{ text }}</b></p>
-{% end %}
-<form method="post">
-    {% module xsrf_form_html() %}
-    <p>Email:<input type="email" name="email" value="{{ default['email'] }}"/></p>
-    <p>Username:<input type="text" name="username" value="{{ default['username'] }}"/></p>
-    <p>Password:<input type="password" name="pwd" /></p>
-    <input type="submit" value="Register" />
-</form>
-<h4 class="attention">Already have an account? Click <a href="login">here</a> to go to login</h4>
+<div class="register_info">
+    <h2>Register</h2>
+</div>
+<div id="register_input">
+    <form method="post">
+        {% module xsrf_form_html() %}
+        <p class="register_text">Email:</p>
+        <input class="register_textbox" type="email" name="email" value="{{ default.get('email') }}"/>
+        <p class="register_text">Username:</p>
+        <input class="register_textbox" type="text" name="username" value="{{ default.get('username') }}"/>
+        <p class="register_text">Password:</p>
+        <input class="register_textbox" type="password" name="pwd" />
+        {% if text is not None%}
+        <p class="attention"><b>{{ text }}</b></p>
+        {% end %}
+        <input class="register_button" {% if text is None%}style="margin-top: 20px;"{% end %} type="submit" value="Register" />
+    </form>
+</div>
+<div class="register_info">
+    <h4 class="attention">Already have an account? Click <a href="login">here</a> to go to login</h4>
+</div>
 </body>
 </html>

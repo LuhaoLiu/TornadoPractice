@@ -21,10 +21,10 @@ ws.onmessage = function (event) {
 
 function send(message) {
     if (message == null || message === "" || RegExp("^[ ]+$").test(message)){
-        document.getElementById("attention").innerText = "Message cannot be empty.";
+        document.getElementById("attention").innerText = "Message cannot be empty";
     }
     else if (message.length > 100){
-        document.getElementById("attention").innerText = "The max length of message is 100.";
+        document.getElementById("attention").innerText = "The max length of message is 100";
     }
     else{
         ws.send(message)

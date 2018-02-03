@@ -12,7 +12,7 @@ class LoginHandler(BaseHandler):
     def get(self):
         if self.get_current_user() is not None:
             self.render("template/warn.html",
-                        information=r'You have already been logged in.'
+                        information=r'You have already been logged in<br />'
                                     r'Please <a href="logout?next=/login">logout</a> at first',
                         title="Warn")
         else:
@@ -52,7 +52,7 @@ class LoginHandler(BaseHandler):
         pwd = self.get_argument("password")
         if real_pwd == () or str(real_pwd[0][0]) != str(sha256(pwd.encode('utf-8')).hexdigest()) or len(pwd) < 8:
             self.render("template/login.html",
-                        text="User do not exist or invalid password.",
+                        text="User do not exist or invalid password",
                         default=dict(user=user))
         elif str(real_pwd[0][0]) == str(sha256(pwd.encode('utf-8')).hexdigest()):
             random_string = ''.join(choice(ascii_letters + digits) for _ in range(randint(5, 20))).encode('utf-8')
@@ -85,7 +85,7 @@ class RegisterHandler(BaseHandler):
     def get(self):
         if self.get_current_user() is not None:
             self.render("template/warn.html",
-                        information=r'You have already been logged in.'
+                        information=r'You have already been logged in<br />'
                                     r'Please <a href="logout?next=/register">logout</a> at first',
                         title="Warn")
         else:
@@ -105,22 +105,22 @@ class RegisterHandler(BaseHandler):
         else:
             if len(pwd) < 8:
                 self.render("template/register.html",
-                            text="The length of the password must over 8.",
+                            text="The length of the password must over 8",
                             default=dict(email=email, username=username))
             else:
                 result = has_user(username, email)
                 if result[0]:
                     if result[3] == 'success':
                         self.render("template/register.html",
-                                    text="This user has already been existed.",
+                                    text="This user has already been existed",
                                     default=dict(email=email, username=username))
                     else:
                         if result[1] != '' and result[2] != '':
-                            text = "This username and email have been used."
+                            text = "This username and email have been used"
                         elif result[1] != '':
-                            text = "This username has been used."
+                            text = "This username has been used"
                         elif result[2] != '':
-                            text = "This email has benn used."
+                            text = "This email has benn used"
                         self.render("template/register.html",
                                     text=text,
                                     default=dict(email=email, username=username))
@@ -130,8 +130,8 @@ class RegisterHandler(BaseHandler):
                                                      "password": str(sha256(pwd.encode('utf-8')).hexdigest()),
                                                      "reg_time": str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))})
                     self.render("template/warn.html",
-                                information=r'You have already successfully registered '
-                                            r'Chick <a href="/login">here</a> to login.',
+                                information=r'You have already successfully registered<br />'
+                                            r'Chick <a href="/login">here</a> to login',
                                 title="Remind")
 
 

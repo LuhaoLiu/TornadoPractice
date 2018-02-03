@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/login.css') }}" />
 </head>
 <body>
-<h2>Login: Entry your username in the following textbox.</h2>
-{% if text is not None%}
-<p class="attention"><b>{{ text }}</b></p>
-{% end %}
-<form method="post">
-    {% module xsrf_form_html() %}
-    <p>Username or Email:<input type="text" name="user" value="{{ default['user'] }}"/></p>
-    <p>Password:<input type="password" name="password" /></p>
-    <p><input type="checkbox" name="remember" value="Remember" checked>Remember me for 30 days</p>
-    <input type="submit" value="Login" />
-</form>
-<h4 class="attention">Do not have an account? Chick <a href="register">here</a> to register.</h4>
+<div class="login_info">
+    <h2>Login</h2>
+</div>
+<div id="login_input">
+    <form method="post">
+        {% module xsrf_form_html() %}
+        <p class="login_text">Username or Email:</p>
+        <input class="login_textbox" type="text" name="user" value="{{ default.get('user') }}" />
+        <p class="login_text">Password:</p>
+        <input class="login_textbox" type="password" name="password" />
+        <p class="login_text" style="font-size: 13px"><input type="checkbox" name="remember" value="Remember" checked>Remember me for 30 days</p>
+        {% if text is not None%}
+        <p class="attention"><b>{{ text }}</b></p>
+        {% end %}
+        <input class="login_button" type="submit" value="Login" />
+    </form>
+</div>
+<div class="login_info">
+    <h4 class="attention">Do not have an account? Chick <a href="register">here</a> to register</h4>
+</div>
 </body>
 </html>

@@ -24,16 +24,16 @@ def has_user(username, email):
 
 def username_check(username):
     if len(username) > 22 or len(username) < 5:
-        raise TypeError("The length of username must be over 5 and under 15.")
+        raise TypeError("The length of username must be over 5 and under 15")
     elif not match("^[0-9a-zA-Z_]+$", username):
-        raise TypeError("You can only use number, letter and underline in your username.")
+        raise TypeError("Username contains illegal characters")
     else:
         return 'valid'
 
 
 def email_check(email):
     if (not match("^[0-9a-zA-Z_\.-]+@[0-9a-zA-Z_-]+\.[0-9a-zA-Z\._-]+$", email)) or len(email) > 45:
-        raise TypeError("The email address is invalid or too long.")
+        raise TypeError("The email address is invalid or too long")
     else:
         return 'valid'
 

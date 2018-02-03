@@ -1,5 +1,9 @@
 a {
     font-family: Monaco;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 p {
     font-family: Monaco;
@@ -25,23 +29,7 @@ h6 {
 input {
     font-family: Monaco;
 }
-input.message {
-    font-size: 18px;
-    width: 50%;
-    height: 23px;
-}
-textarea {
-    font-family: Monaco;
-    font-size: 18px;
-    height: 500px;
-    width: 100%;
-}
-#content_frame {
-    width: 60%;
-    height: 500px;
-    overflow: scroll;
-    border: 1px solid;
-}
 .attention {
-    color: darkorange;
+    color: orangered;
+    font-size: 12px;
 }

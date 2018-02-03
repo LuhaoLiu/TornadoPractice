@@ -1,0 +1,11 @@
+input.message {
+    font-size: 18px;
+    width: 50%;
+    height: 23px;
+}
+#content_frame {
+    width: 60%;
+    height: 500px;
+    overflow: scroll;
+    border: 1px solid;
+}

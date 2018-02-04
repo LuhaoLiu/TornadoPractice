@@ -14,7 +14,8 @@ class LoginHandler(BaseHandler):
             self.render("template/warn.html",
                         information=r'You have already been logged in<br />'
                                     r'Please <a href="logout?next=/login">logout</a> at first',
-                        title="Warn")
+                        title="Warn",
+                        user=self.user)
         else:
             self.render("template/login.html", text=None, default=dict(user=''))
 
@@ -87,7 +88,8 @@ class RegisterHandler(BaseHandler):
             self.render("template/warn.html",
                         information=r'You have already been logged in<br />'
                                     r'Please <a href="logout?next=/register">logout</a> at first',
-                        title="Warn")
+                        title="Warn",
+                        user=self.user)
         else:
             self.render("template/register.html", text=None, default=dict(email='', username=''))
 
@@ -132,7 +134,8 @@ class RegisterHandler(BaseHandler):
                     self.render("template/warn.html",
                                 information=r'You have already successfully registered<br />'
                                             r'Chick <a href="/login">here</a> to login',
-                                title="Remind")
+                                title="Remind",
+                                user=None)
 
 
 class LogoutHandler(BaseHandler):

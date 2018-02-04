@@ -128,4 +128,5 @@ class BaseHandler(RequestHandler):
             return self.user
 
     def write_error(self, status_code, info='', **kwargs):
-        self.render("template/error.html", status_code=status_code, info=info)
+        self.get_current_user()
+        self.render("template/error.html", status_code=status_code, info=info, user=self.user)

@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
+{% block main_head %}
     <meta charset="UTF-8">
     <title>{{ status_code }}</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
-</head>
-<body>
+{% end %}
+{% block main_body %}
 <h2>Unfortunately, an error has occurred</h2>
 <h4>ErrorCode: {{ status_code }}</h4>
 {% if info != '' %}
 <h4>{{ info }}</h4>
 {% end %}
 <h4 class="attention"><a href="/">Chick here to go to the index</a></h4>
-</body>
-</html>
+{% end %}

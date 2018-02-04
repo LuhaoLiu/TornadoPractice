@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
+{% block main_head %}
     <meta charset="UTF-8">
     <title>User: {{ user.username }}</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}">
-</head>
-<body>
+{% end %}
+{% block main_body %}
 <p>User {{ user.username }}'s email is {{ user.email }}.</p>
 <p>Time of registration is {{ user.reg_time }}</p>
-</body>
-</html>
+{% end %}

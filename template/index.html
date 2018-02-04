@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
+{% block main_head %}
     <meta charset="UTF-8">
     <title>Welcome</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/index.css') }}" />
-</head>
-<body>
-<div id="index_header">
-    <a class="index_header_page" href="/">Index</a>
-    <div id="index_header_user">
-        <span>{{ user.username }}</span>
-        <div id="index_header_user_content">
-            <a class="index_header_text" href="/user/{{ user.username }}">Profile</a>
-            <hr class="index_header_hr" />
-            <a class="index_header_text" href="/logout">Logout</a>
-        </div>
-    </div>
-</div>
+{% end %}
+{% block main_body %}
 <div id="index_body">
+    {% if user is not None %}
     <iframe src="chat" id="index_body_chat" frameborder="0"></iframe>
+    {% end %}
 </div>
-</body>
-</html>
+{% end %}

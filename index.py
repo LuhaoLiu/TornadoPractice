@@ -1,9 +1,8 @@
 from base import BaseHandler
-from tornado.web import authenticated
 
 
 class IndexHandler(BaseHandler):
 
-    @authenticated
     def get(self):
+        self.get_current_user()
         self.render("template/index.html", user=self.user)

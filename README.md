@@ -38,3 +38,6 @@ Online chat function supported by webscoket
 Save server information and mysql information in the json file 
 `/info/server.json` and `/info/mysql.json` 
 instead of saving in the source code.
+
+#### Version 1.0.2
+Add some page style

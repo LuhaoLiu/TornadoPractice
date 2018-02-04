@@ -7,28 +7,28 @@ ws.onmessage = function (event) {
     var username = data.username;
     var msg = data.message;
 
-    var content = document.getElementById("content");
-    var temp = document.getElementById("temp");
+    var content = document.getElementById("ws_message_frame_content");
+    var temp = document.getElementById("ws_temp");
     temp.innerText = ": " + msg + '\n';
     var initHTML = temp.innerHTML;
     temp.innerHTML = '';
-    content.innerHTML = content.innerHTML + '<a href="user/' + username + '" target="_blank">' + username + '</a>' + initHTML;
+    content.innerHTML = content.innerHTML + '<a class="ws_message_frame_user" href="user/' + username + '" target="_blank">' + username + '</a>' + initHTML;
 
-    var contentFrame = document.getElementById("content_frame");
+    var contentFrame = document.getElementById("ws_message_frame");
     contentFrame.scrollTop = contentFrame.scrollHeight;
 }
 
 
 function send(message) {
-    if (message == null || message === "" || RegExp("^[ ]+$").test(message)){
-        document.getElementById("attention").innerText = "Message cannot be empty";
+    if (message == null || message === "" || RegExp("^[ ]+$").test(message)) {
+        document.getElementById("ws_attention").innerText = "Message cannot be empty";
     }
-    else if (message.length > 100){
-        document.getElementById("attention").innerText = "The max length of message is 100";
+    else if (message.length > 100) {
+        document.getElementById("ws_attention").innerText = "The max length of message is 100";
     }
-    else{
+    else {
+        document.getElementById("ws_attention").innerText = "";
+        document.getElementById("ws_message_send_textbox").value = "";
         ws.send(message)
-        document.getElementById("attention").innerText = "";
-        document.getElementById("message").value = "";
     }
 }

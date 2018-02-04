@@ -1,11 +1,48 @@
-input.message {
-    font-size: 18px;
-    width: 50%;
-    height: 23px;
-}
-#content_frame {
+#ws_message_frame {
     width: 60%;
     height: 500px;
     overflow: scroll;
     border: 1px solid;
+}
+.ws_message_frame_user {
+    color: black;
+    text-decoration: none;
+}
+.ws_message_frame_user:hover {
+    text-decoration: underline;
+}
+#ws_message_send {
+    width: 60%;
+    height: 50px;
+}
+#ws_message_send_textbox {
+    float: left;
+
+    width: 70%;
+    width: calc(100% - 80px);
+    height: 20px;
+
+    font-size: 12px;
+    font-family: Monaco;
+
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+#ws_message_send_button {
+    float: right;
+
+    width: 60px;
+    height: 23px;
+
+    font-size: 12px;
+    font-family: Monaco;
+
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+#ws_message_send_button:hover {
+    background-color: whitesmoke;
+}
+#ws_message_send_button:active {
+    background-color: whitesmoke;
 }

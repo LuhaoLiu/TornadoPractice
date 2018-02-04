@@ -9,16 +9,18 @@
 <body>
 <script type="text/javascript" src="{{ static_url('js/webscoket.js') }}"></script>
 <h3>Welcome, {{ username }}</h3>
-<div id="content_frame">
-    <p id="content"></p>
+<div id="ws_message_frame">
+    <p id="ws_message_frame_content"></p>
 </div>
-<form onsubmit="return false;">
-    <p>
-        <input type="text" name="message" id="message" class="message" onkeypress="if(event.keyCode == 13){sendmsg.click();}"/>
-        <input type="button" value="Send" name="sendmsg" onclick="send(this.form.message.value);" />
-    </p>
-</form>
-<p id="attention" class="attention"></p>
-<p id="temp" style="display: none;"></p>
+<div id="ws_message_send">
+    <form onsubmit="return false;">
+        <p>
+            <input type="text" name="message" id="ws_message_send_textbox" placeholder="Type your message here" onkeypress="if(event.keyCode == 13){sendmsg.click();}" />
+            <input type="button" value="Send" name="sendmsg" id="ws_message_send_button" onclick="send(this.form.message.value);" />
+        </p>
+    </form>
+</div>
+<p id="ws_attention" class="attention"></p>
+<p id="ws_temp" style="display: none;"></p>
 </body>
 </html>

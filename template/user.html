@@ -2,9 +2,12 @@
 {% block main_head %}
     <meta charset="UTF-8">
     <title>User: {{ user.username }}</title>
-    <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/account.css') }}" />
 {% end %}
 {% block main_body %}
-<p>User {{ user.username }}'s email is {{ user.email }}.</p>
-<p>Time of registration is {{ user.reg_time }}</p>
+<div id="user_information">
+    <p>User {{ user.username }}'s email is {{ user.email }}</p>
+    <p>Time of registration is {{ user.reg_time }}</p>
+</div>
 {% end %}

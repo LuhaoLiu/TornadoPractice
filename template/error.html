@@ -5,10 +5,11 @@
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
 {% end %}
 {% block main_body %}
-<h2>Unfortunately, an error has occurred</h2>
-<h4>ErrorCode: {{ status_code }}</h4>
-{% if info != '' %}
-<h4>{{ info }}</h4>
-{% end %}
-<h4 class="attention"><a href="/">Chick here to go to the index</a></h4>
+<div class="info_block">
+    <h2>Unfortunately, an error has occurred</h2>
+    <h3>ErrorCode: {{ status_code }}</h3>
+    {% if info != '' %}
+    <p>{{ info }}</p>
+    {% end %}
+</div>
 {% end %}

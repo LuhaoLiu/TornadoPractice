@@ -54,7 +54,9 @@ class Database:
         query_sql = """SELECT %s FROM %s WHERE %s;""" % (select, table_name, where)
         cursor = self.database.cursor()
         cursor.execute(query_sql)
-        return cursor.fetchall()
+        fetchall = cursor.fetchall()
+        cursor.close()
+        return fetchall
 
     def insert(self, table_name, **values):
         insert_sql = """INSERT INTO %s(""" % table_name
@@ -69,6 +71,7 @@ class Database:
         cursor = self.database.cursor()
         cursor.execute(insert_sql)
         self.database.commit()
+        cursor.close()
 
     def update(self, table_name, values, where):
         update_sql = """UPDATE %s SET """ % table_name
@@ -79,6 +82,7 @@ class Database:
         cursor = self.database.cursor()
         cursor.execute(update_sql)
         self.database.commit()
+        cursor.close()
 
     def close(self):
         self.database.close()
@@ -126,6 +130,9 @@ class BaseHandler(RequestHandler):
         else:
             self.user = User(username[0][0])
             return self.user
+
+    def get(self):
+        self.write_error(404)
 
     def write_error(self, status_code, info='', **kwargs):
         self.get_current_user()

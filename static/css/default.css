@@ -36,3 +36,15 @@ span {
     color: orangered;
     font-size: 12px;
 }
+.info_block {
+    width: 50%;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+
+    border-radius: 2px;
+    border: 1px solid whitesmoke;
+
+    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.2);
+}

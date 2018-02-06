@@ -1,6 +1,7 @@
 from base import BaseHandler, User
 from tornado.web import authenticated
 
+
 class UserHandler(BaseHandler):
 
     @authenticated

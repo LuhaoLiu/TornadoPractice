@@ -3,11 +3,17 @@
     <meta charset="UTF-8">
     <title>User: {{ user.username }}</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
-    <link type="text/css" rel="stylesheet" href="{{ static_url('css/account.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/user.css') }}" />
 {% end %}
 {% block main_body %}
 <div id="user_information">
-    <p>User {{ user.username }}'s email is {{ user.email }}</p>
-    <p>Time of registration is {{ user.reg_time }}</p>
+    <p id="user_information_username">
+        <img id="user_information_avatar" src="../static/img/avatar/{{ user.username }}.png" /><br />
+        {{ user.username }}
+    </p>
+    <ul id="user_information_list">
+        <li><p class="user_information_list_left">Registered Time:
+            <span class="user_information_list_right"><b>{{ user.reg_time }}</b></span></p></li>
+    </ul>
 </div>
 {% end %}

@@ -1,9 +1,11 @@
 from base import BaseHandler
 from tornado.web import authenticated
 from base import database, has_user, email_check, username_check
-from hashlib import sha256
+from hashlib import sha256, md5
 from random import randint, choice
 from string import ascii_letters, digits
+from urllib import request
+from os import path
 import time
 
 
@@ -131,6 +133,8 @@ class RegisterHandler(BaseHandler):
                                                      "email": email,
                                                      "password": str(sha256(pwd.encode('utf-8')).hexdigest()),
                                                      "reg_time": str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))})
+                    request.urlretrieve(r"https://www.gravatar.com/avatar/%s?d=identicon&s=200" % str(md5(email.encode('utf-8')).hexdigest()),
+                                        path.join(path.realpath(path.dirname(__file__)), "static/img/avatar/%s.png" % username))
                     self.render("template/warn.html",
                                 information=r'You have already successfully registered<br />'
                                             r'Chick <a href="/login">here</a> to login',

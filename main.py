@@ -3,7 +3,7 @@ from tornado.ioloop import IOLoop
 from base import BaseHandler, database, info_load_from_json
 from index import IndexHandler
 from confirm import LoginHandler, LogoutHandler, RegisterHandler
-from account import UserHandler
+from user import UserHandler
 from webscoket import WSServerHandler, WSUserHandler
 from os import path
 

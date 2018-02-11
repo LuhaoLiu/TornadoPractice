@@ -30,16 +30,24 @@ body {
     z-index: 3;
 }
 #header_page_avatar {
-    border-radius: 50%;
-    height: 40px;
+    float: left;
+    margin-right: 10px;
+
     width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
 
     padding-top: 5px;
+
+    position: relative;
+    z-index: 1;
 }
 #header_user_content {
     display: none;
     width: 130px;
     background-color: #fafafa;
+    margin-left: auto;
     margin-right: -8px;
     padding-top: 8px;
     padding-bottom: 8px;

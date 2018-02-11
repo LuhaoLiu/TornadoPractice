@@ -9,7 +9,7 @@
         <a class="header_page" href="/">Index</a>
         <div id="header_user">
             {% if user is not None %}
-            <span>{{ user.username }}</span>
+            <span><img src="/static/img/avatar/{{ user.username }}.png" id="header_page_avatar" />{{ user.username }}</span>
             <div id="header_user_content">
                 <a class="header_user_text" href="/user/{{ user.username }}">Profile</a>
                 <hr class="header_user_hr" />

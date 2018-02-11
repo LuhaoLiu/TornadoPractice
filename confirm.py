@@ -133,8 +133,12 @@ class RegisterHandler(BaseHandler):
                                                      "email": email,
                                                      "password": str(sha256(pwd.encode('utf-8')).hexdigest()),
                                                      "reg_time": str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))})
-                    request.urlretrieve(r"https://www.gravatar.com/avatar/%s?d=identicon&s=200" % str(md5(email.encode('utf-8')).hexdigest()),
-                                        path.join(path.realpath(path.dirname(__file__)), "static/img/avatar/%s.png" % username))
+                    try:
+                        request.urlretrieve(r"https://www.gravatar.com/avatar/%s?d=identicon&s=200" % str(md5(email.encode('utf-8')).hexdigest()),
+                                            path.join(path.realpath(path.dirname(__file__)), "static/img/avatar/%s.png" % username))
+                    except:
+                        file = open(path.join(path.realpath(path.dirname(__file__)), "static/img/avatar/%s.png" % username), 'w')
+                        file.close()
                     self.render("template/warn.html",
                                 information=r'You have already successfully registered<br />'
                                             r'Chick <a href="/login">here</a> to login',

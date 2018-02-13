@@ -10,4 +10,4 @@ class UserHandler(BaseHandler):
         if user.uid is None:
             self.write_error(404, "User not found")
         else:
-            self.render("template/user.html", user=user)
+            self.render("template/user.html", user=self.user, find_user=user)

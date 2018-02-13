@@ -8,12 +8,12 @@
 {% block main_body %}
 <div id="user_information">
     <p id="user_information_username">
-        <img id="user_information_avatar" src="../static/img/avatar/{{ user.username }}.png" /><br />
-        {{ user.username }}
+        <img id="user_information_avatar" src="/static/img/avatar/{{ find_user.username }}.png" /><br />
+        {{ find_user.username }}
     </p>
     <ul id="user_information_list">
         <li><p class="user_information_list_left">Registered Time:
-            <span class="user_information_list_right"><b>{{ user.reg_time }}</b></span></p></li>
+            <span class="user_information_list_right"><b>{{ find_user.reg_time }}</b></span></p></li>
     </ul>
 </div>
 {% end %}

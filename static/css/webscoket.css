@@ -11,6 +11,12 @@
 .ws_message_frame_user:hover {
     text-decoration: underline;
 }
+.ws_message_frame_action {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    text-align: center;
+}
 #ws_message_send {
     width: 60%;
     height: 50px;

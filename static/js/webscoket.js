@@ -4,18 +4,28 @@ var ws = new WebSocket("ws://"+ window.location.host + "/ws")
 ws.onmessage = function (event) {
 
     var data = JSON.parse(event.data);
-    var username = data.username;
-    var msg = data.message;
+    if(data.type == "message") {
+        var username = data.username;
+        var msg = data.message;
 
-    var content = document.getElementById("ws_message_frame_content");
-    var temp = document.getElementById("ws_temp");
-    temp.innerText = ": " + msg + '\n';
-    var initHTML = temp.innerHTML;
-    temp.innerHTML = '';
-    content.innerHTML = content.innerHTML + '<a class="ws_message_frame_user" href="user/' + username + '" target="_blank">' + username + '</a>' + initHTML;
+        var content = document.getElementById("ws_message_frame_content");
+        var temp = document.getElementById("ws_temp");
+        temp.innerText = ": " + msg + '\n';
+        var initHTML = temp.innerHTML;
+        temp.innerHTML = '';
+        content.innerHTML = content.innerHTML + '<a class="ws_message_frame_user" href="user/' + username + '" target="_blank">' + username + '</a>' + initHTML;
 
-    var contentFrame = document.getElementById("ws_message_frame");
-    contentFrame.scrollTop = contentFrame.scrollHeight;
+        var contentFrame = document.getElementById("ws_message_frame");
+        contentFrame.scrollTop = contentFrame.scrollHeight;
+    }
+    else if(data.type == "user") {
+        var username = data.username;
+        var action = data.action;
+
+        var content = document.getElementById("ws_message_frame_content");
+        content.innerHTML = content.innerHTML +
+            '<p class="ws_message_frame_action"><a href="user/' + username + '" target="_black">' + username + "</a> has " + action + " this chatroom</p>";
+    }
 }
 
 

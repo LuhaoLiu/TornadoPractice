@@ -84,6 +84,13 @@ class Database:
         self.database.commit()
         cursor.close()
 
+    def delete(self, table_name, where):
+        delete_sql = """DELETE FROM %s WHERE %s;""" % (table_name, where)
+        cursor = self.database.cursor()
+        cursor.execute(delete_sql)
+        self.database.commit()
+        cursor.close()
+
     def close(self):
         self.database.close()
 
@@ -103,6 +110,7 @@ class User:
         self.email = None
         self.uid = None
         self.reg_time = None
+        self.permission = None
         self.get_information()
 
     def get_information(self):
@@ -112,6 +120,13 @@ class User:
                 self.email = result[0][0]
                 self.uid = int(result[0][1])
                 self.reg_time = result[0][2]
+                permission = database.query("ws_permission", "*", "uid = '%s'" % self.uid)
+                if permission is not None:
+                    self.permission = dict(speak=permission[0][1],
+                                           connect=permission[0][2],
+                                           gag=permission[0][3],
+                                           delete=permission[0][4],
+                                           admin=permission[0][5])
 
 
 class BaseHandler(RequestHandler):

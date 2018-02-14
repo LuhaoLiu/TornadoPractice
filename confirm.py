@@ -133,6 +133,8 @@ class RegisterHandler(BaseHandler):
                                                      "email": email,
                                                      "password": str(sha256(pwd.encode('utf-8')).hexdigest()),
                                                      "reg_time": str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))})
+                    uid = database.query("ws_account", "uid", "username='%s'" % username)[0][0]
+                    database.insert("ws_permission", **{"uid": str(uid)})
                     try:
                         request.urlretrieve(r"https://www.gravatar.com/avatar/%s?d=identicon&s=200" % str(md5(email.encode('utf-8')).hexdigest()),
                                             path.join(path.realpath(path.dirname(__file__)), "static/img/avatar/%s.png" % username))

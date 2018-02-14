@@ -28,6 +28,17 @@ Used packages: `pymysql`, `tornado`
 | content | text                | NO   |     | NULL    |                |
 | date    | datetime            | YES  |     | NULL    |                |
 
+* `ws_permission`:
+
+| Field   | Type             | Null | Key | Default | Extra          |
+|---------|------------------|------|-----|---------|----------------|
+| uid     | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| speak   | tinyint(1)       | NO   |     | 1       |                |
+| connect | tinyint(1)       | NO   |     | 1       |                |
+| gag     | tinyint(1)       | NO   |     | 0       |                |
+| delete  | tinyint(1)       | NO   |     | 0       |                |
+| admin   | tinyint(1)       | NO   |     | 0       |                |
+
 ## Change Log
 
 ### Version 1
@@ -41,3 +52,7 @@ instead of saving in the source code.
 
 #### Version 1.0.2
 Add some page style
+
+#### Version 1.1.0
+Add style to all pages
+Add permission(not complete)

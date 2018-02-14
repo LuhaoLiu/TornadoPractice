@@ -17,8 +17,8 @@ class WSUserHandler(BaseHandler):
 
 class WSServerHandler(WebSocketHandler, BaseHandler):
 
+    @authenticated
     def open(self):
-        self.user = self.get_current_user()
         on_line_users.append(self)
         data = dict(type='user', username=self.user.username, action='joined')
         self.send_all(data)

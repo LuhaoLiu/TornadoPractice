@@ -26,6 +26,9 @@ ws.onmessage = function (event) {
         content.innerHTML = content.innerHTML +
             '<p class="ws_message_frame_action"><a href="user/' + username + '" target="_black">' + username + "</a> has " + action + " this chatroom</p>";
     }
+    else if(data.type == "denied") {
+        window.alert("You don't has the permission to " + data.permission);
+    }
 }
 
 

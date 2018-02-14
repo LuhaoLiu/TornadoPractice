@@ -52,6 +52,7 @@ class Database:
 
     def query(self, table_name, select='*', where='true'):
         query_sql = """SELECT %s FROM %s WHERE %s;""" % (select, table_name, where)
+        self.database.commit()
         cursor = self.database.cursor()
         cursor.execute(query_sql)
         fetchall = cursor.fetchall()

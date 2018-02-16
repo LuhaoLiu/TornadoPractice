@@ -2,7 +2,7 @@
 Practice for using tornado.  
 Online multiplayer chat website with authentication function.
 
-Used packages: `pymysql`, `tornado`  
+Used packages: `pymysql`, `tornado`, `Pillow`  
 
 **Structure of database**
 

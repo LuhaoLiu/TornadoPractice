@@ -66,6 +66,10 @@ body {
 #header_user:hover #header_user_content {
     display: block;
 }
+#header_user:hover #header_page_avatar {
+    margin-left: 80px;
+    margin-right: 10px;
+}
 #header_user:hover {
     color: black;
 }

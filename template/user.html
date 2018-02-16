@@ -11,6 +11,15 @@
         <img id="user_information_avatar" src="/static/img/avatar/{{ find_user.username }}.png" /><br />
         {{ find_user.username }}
     </p>
+    {% if user.uid == find_user.uid %}
+    <div id="user_avatar_upload">
+        <form method="post" enctype="multipart/form-data">
+            {% module xsrf_form_html() %}
+            <input id="user_avatar_upload_input" type="file" name="avatar" accept="image/png, image/jpeg" onchange="type_name.click()" />
+            <input type="submit" name="type_name" value="avatar_upload" style="display: none;" />
+        </form>
+    </div>
+    {% end %}
     <ul id="user_information_list">
         <li><p class="user_information_list_left">Registered Time:
             <span class="user_information_list_right"><b>{{ find_user.reg_time }}</b></span></p></li>

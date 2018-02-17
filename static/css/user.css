@@ -20,6 +20,28 @@
 }
 #user_information_username {
     font-size: 28px;
+
+    margin-bottom: 8px;
+}
+#user_avatar_upload {
+    width: 160px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+
+    background-color: deepskyblue;
+
+    text-align: center;
+}
+#user_avatar_upload:hover {
+    background-color: dodgerblue;
+}
+#user_avatar_upload_hint {
+    line-height: 30px;
+    color: white;
 }
 #user_information_list {
     list-style-type: none;

@@ -32,6 +32,9 @@ input {
 span {
     font-family: Monaco;
 }
+label {
+    font-family: Monaco;
+}
 .attention {
     color: orangered;
     font-size: 12px;

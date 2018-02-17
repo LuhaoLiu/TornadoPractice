@@ -12,8 +12,9 @@
         {{ find_user.username }}
     </p>
     {% if user.uid == find_user.uid %}
-    <div id="user_avatar_upload">
-        <form method="post" enctype="multipart/form-data">
+    <div id="user_avatar_upload" onclick="avatar_form.avatar.click()">
+        <span id="user_avatar_upload_hint">Upload avatar</span>
+        <form name="avatar_form" method="post" enctype="multipart/form-data" style="display: none;">
             {% module xsrf_form_html() %}
             <input id="user_avatar_upload_input" type="file" name="avatar" accept="image/png, image/jpeg" onchange="type_name.click()" />
             <input type="submit" name="type_name" value="avatar_upload" style="display: none;" />

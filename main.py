@@ -1,6 +1,6 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
-from base import BaseHandler, info_load_from_json, open_database, close_database
+from base import BaseHandler, info_load_from_json, database
 from index import IndexHandler
 from confirm import LoginHandler, LogoutHandler, RegisterHandler
 from user import UserHandler
@@ -32,12 +32,11 @@ def make_app():
 if __name__ == "__main__":
     server_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "server.json"))
     settings.update(cookie_secret=server_info.get("cookie_secret"))
-    open_database(info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "mysql.json")))
     app = make_app()
     app.listen(server_info.get("port"))
     print("Server successfully started.")
     try:
         IOLoop.current().start()
     except KeyboardInterrupt:
-        close_database()
+        database.close()
         print("Server and database connection have already closed.")

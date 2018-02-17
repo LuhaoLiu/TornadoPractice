@@ -96,16 +96,12 @@ class Database:
         self.database.close()
 
 
-database = None
-
-
-def open_database(database_info):
-    global database
-    database = Database(pymysql.connect(host=str(database_info.get("mysql_host")),
-                                        port=int(database_info.get("mysql_port")),
-                                        user=str(database_info.get("mysql_user")),
-                                        passwd=str(database_info.get("mysql_password")),
-                                        database=str(database_info.get("database_name"))))
+database_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "mysql.json"))
+database = Database(pymysql.connect(host=str(database_info.get("mysql_host")),
+                                    port=int(database_info.get("mysql_port")),
+                                    user=str(database_info.get("mysql_user")),
+                                    passwd=str(database_info.get("mysql_password")),
+                                    database=str(database_info.get("database_name"))))
 
 
 def close_database():
@@ -125,18 +121,20 @@ class User:
 
     def get_information(self):
         if username_check(self.username) == 'valid':
-            result = database.query("ws_account", "email,uid,reg_time", "username = '%s'" % self.username)
+            result = database.query("ws_account", "email,uid,reg_time,username", "username = '%s'" % self.username)
             if result != ():
                 self.email = result[0][0]
                 self.uid = int(result[0][1])
                 self.reg_time = result[0][2]
+                self.username = result[0][3]
                 permission = database.query("ws_permission", "*", "uid = '%s'" % self.uid)
                 if permission is not None:
                     self.permission = dict(speak=permission[0][1],
                                            connect=permission[0][2],
                                            gag=permission[0][3],
                                            delete=permission[0][4],
-                                           admin=permission[0][5])
+                                           root=permission[0][5],
+                                           admin=permission[0][6])
 
 
 class BaseHandler(RequestHandler):

@@ -48,4 +48,6 @@ class UserHandler(BaseHandler):
                                     information='<p>You have successfully uploaded your avatar<br/>'
                                                 'Please force refresh to clear the clear</p><br/>'
                                                 'Click <a href="%s">here</a> to go back' % self.request.path)
+        elif str(self.get_argument("type_name")) == "user_admin":
+            print(self.request.arguments)
 

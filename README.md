@@ -37,6 +37,7 @@ Used packages: `pymysql`, `tornado`, `Pillow`
 | connect | tinyint(1)       | NO   |     | 1       |                |
 | gag     | tinyint(1)       | NO   |     | 0       |                |
 | delete  | tinyint(1)       | NO   |     | 0       |                |
+| root    | tinyint(1)       | NO   |     | 0       |                |
 | admin   | tinyint(1)       | NO   |     | 0       |                |
 
 ## Change Log

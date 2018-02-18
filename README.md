@@ -56,4 +56,4 @@ Add some page style
 
 #### Version 1.1.0
 Add style to all pages
-Add permission(not complete)
+Add authority management system

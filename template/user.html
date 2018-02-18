@@ -29,17 +29,18 @@
     </div>
     {% if user.permission.get("admin") == 1 %}
     <div id="user_admin">
+        <p>Authority Management</p>
         <form name="user_admin_form" method="post">
             {% module xsrf_form_html() %}
             <p>
                 {% if user.permission.get("gag") == 1 %}
-                <input type="checkbox" value="Connect" name="connect" {% if find_user.permission.get("connect") == 1 %}checked{% end %}/>Connect
-                <input type="checkbox" value="Speak" name="speak" {% if find_user.permission.get("speak") == 1 %}checked{% end %}/>Speak
+                <input type="checkbox" value="1" name="connect" {% if find_user.permission.get("connect") == 1 %}checked{% end %}/>Connect
+                <input type="checkbox" value="1" name="speak" {% if find_user.permission.get("speak") == 1 %}checked{% end %}/>Speak
                 {% end %}
                 {% if user.permission.get("root") == 1 %}
-                <input type="checkbox" value="Admin" name="admin" {% if find_user.permission.get("admin") == 1 %}checked{% end %} />Admin
-                <input type="checkbox" value="Gag" name="gag" {% if find_user.permission.get("gag") == 1 %}checked{% end %} />Gag
-                <input type="checkbox" value="Root" name="root" {% if find_user.permission.get("root") == 1 %}checked{% end %} />Root
+                <input type="checkbox" value="1" name="admin" {% if find_user.permission.get("admin") == 1 %}checked{% end %} />Admin
+                <input type="checkbox" value="1" name="gag" {% if find_user.permission.get("gag") == 1 %}checked{% end %} />Gag
+                <input type="checkbox" value="1" name="root" {% if find_user.permission.get("root") == 1 %}checked{% end %} />Root
                 {% end %}
             </p>
             <div onclick="user_admin_form.type_name.click()" id="user_admin_submit">Submit</div>

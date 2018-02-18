@@ -127,14 +127,14 @@ class User:
                 self.uid = int(result[0][1])
                 self.reg_time = result[0][2]
                 self.username = result[0][3]
-                permission = database.query("ws_permission", "*", "uid = '%s'" % self.uid)
+                permission = database.query("ws_permission", "uid,speak,connect,gag,root,admin", "uid = '%s'"
+                                            % self.uid)
                 if permission is not None:
                     self.permission = dict(speak=permission[0][1],
                                            connect=permission[0][2],
                                            gag=permission[0][3],
-                                           delete=permission[0][4],
-                                           root=permission[0][5],
-                                           admin=permission[0][6])
+                                           root=permission[0][4],
+                                           admin=permission[0][5])
 
 
 class BaseHandler(RequestHandler):

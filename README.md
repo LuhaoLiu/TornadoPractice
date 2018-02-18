@@ -36,7 +36,6 @@ Used packages: `pymysql`, `tornado`, `Pillow`
 | speak   | tinyint(1)       | NO   |     | 1       |                |
 | connect | tinyint(1)       | NO   |     | 1       |                |
 | gag     | tinyint(1)       | NO   |     | 0       |                |
-| delete  | tinyint(1)       | NO   |     | 0       |                |
 | root    | tinyint(1)       | NO   |     | 0       |                |
 | admin   | tinyint(1)       | NO   |     | 0       |                |
 
@@ -55,5 +54,5 @@ instead of saving in the source code.
 Add some page style
 
 #### Version 1.1.0
-Add style to all pages
+Add style to all pages  
 Add authority management system

@@ -5,6 +5,7 @@ from index import IndexHandler
 from confirm import LoginHandler, LogoutHandler, RegisterHandler
 from user import UserHandler
 from webscoket import WSServerHandler, WSUserHandler
+from setup import SetupHandler
 from os import path
 
 
@@ -29,14 +30,32 @@ def make_app():
     ], **settings)
 
 
+def make_setup_app():
+    return Application([
+        (r"/", SetupHandler)
+    ], static_path=path.join(path.realpath(path.dirname(__file__)), "static"))
+
+
 if __name__ == "__main__":
-    server_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "server.json"))
-    settings.update(cookie_secret=server_info.get("cookie_secret"))
-    app = make_app()
-    app.listen(server_info.get("port"))
-    print("Server successfully started.")
+    if database is not None:
+        print("Database successfully connected.")
+        try:
+            server_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "server.json"))
+            settings.update(cookie_secret=server_info.get("cookie_secret"))
+            app = make_app()
+            app.listen(server_info.get("port"))
+            print("Server successfully started.")
+        except:
+            app = make_setup_app()
+            app.listen(8080)
+    else:
+        app = make_setup_app()
+        app.listen(8080)
     try:
         IOLoop.current().start()
     except KeyboardInterrupt:
-        database.close()
-        print("Server and database connection have already closed.")
+        if database is not None:
+            database.close()
+            print("Server and database connection have already closed.")
+        else:
+            print("Server have already closed.")

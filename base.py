@@ -96,17 +96,15 @@ class Database:
         self.database.close()
 
 
-database_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "mysql.json"))
-database = Database(pymysql.connect(host=str(database_info.get("mysql_host")),
-                                    port=int(database_info.get("mysql_port")),
-                                    user=str(database_info.get("mysql_user")),
-                                    passwd=str(database_info.get("mysql_password")),
-                                    database=str(database_info.get("database_name"))))
-
-
-def close_database():
-    global database
-    database.close()
+try:
+    database_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "mysql.json"))
+    database = Database(pymysql.connect(host=str(database_info.get("mysql_host")),
+                                        port=int(database_info.get("mysql_port")),
+                                        user=str(database_info.get("mysql_user")),
+                                        passwd=str(database_info.get("mysql_password")),
+                                        database=str(database_info.get("database_name"))))
+except:
+    database = None
 
 
 class User:

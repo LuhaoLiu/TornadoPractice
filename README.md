@@ -42,8 +42,8 @@ Used packages: `pymysql`, `tornado`, `Pillow`
 ## Change Log
 
 ### Version 1
-Register and login function  
-Online chat function supported by webscoket  
+Register and login function.  
+Online chat function supported by webscoket.  
 
 #### Version 1.0.1
 Save server information and mysql information in the json file 
@@ -51,8 +51,8 @@ Save server information and mysql information in the json file
 instead of saving in the source code.
 
 #### Version 1.0.2
-Add some page style
+Add some page style.
 
 #### Version 1.1.0
-Add style to all pages  
-Add authority management system
+Add style to all pages.  
+Add authority management system.

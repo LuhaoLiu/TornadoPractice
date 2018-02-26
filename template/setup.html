@@ -6,6 +6,25 @@
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
 </head>
 <body>
-
+<div id="setup_title" class="info_block">
+    <h1>Please entry your settings below</h1>
+</div>
+<div id="setup_div" class="info_block">
+    <form method="post" id="info_form">
+        <p>
+            <h3>MySQL Server Information</h3>
+            {% for info in mysql_info %}
+            {{ info }}: <input type="text" name="{{ info }}" value="{{ mysql_info.get(info) }}" /><br />
+            {% end %}
+        </p>
+        <p>
+            <h3>Server Information</h3>
+            {% for info in server_info %}
+            {{ info }}: <input type="text" name="{{ info }}" value="{{ server_info.get(info) }}" /><br />
+            {% end %}
+        </p>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
 </body>
 </html>

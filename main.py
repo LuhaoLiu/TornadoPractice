@@ -32,7 +32,7 @@ def make_app():
 
 def make_setup_app():
     return Application([
-        (r"/", SetupHandler)
+        (r"/.*", SetupHandler)
     ], static_path=path.join(path.realpath(path.dirname(__file__)), "static"))
 
 

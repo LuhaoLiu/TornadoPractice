@@ -50,5 +50,7 @@ label {
     border-radius: 2px;
     border: 1px solid whitesmoke;
 
+    font-family: Monaco;
+
     box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.2);
 }

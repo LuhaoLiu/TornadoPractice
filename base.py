@@ -39,10 +39,14 @@ def email_check(email):
 
 
 def info_load_from_json(path):
-    f = open(path)
-    info = json.load(f)
-    f.close()
+    with open(path) as f:
+        info = json.load(f)
     return info
+
+
+def info_write_in_json(path, data):
+    with open(path, "w") as f:
+        json.dump(data, f)
 
 
 class Database:

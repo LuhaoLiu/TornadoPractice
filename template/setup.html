@@ -13,6 +13,9 @@
 <div id="setup_div" class="info_block">
     <form method="post" id="info_form">
         <h3>MySQL Server Information</h3>
+        {% if warn is not None %}
+        <p class="attention">{{ warn }}</p>
+        {% end %}
         {% for info in mysql_info %}
         <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="text" name="{{ info }}" value="{{ mysql_info.get(info) }}" /></p>
         {% end %}

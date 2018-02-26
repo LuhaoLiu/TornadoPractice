@@ -49,6 +49,7 @@ if __name__ == "__main__":
             app = make_setup_app()
             app.listen(8080)
     else:
+        print("Server successfully started.")
         app = make_setup_app()
         app.listen(8080)
     try:

@@ -109,6 +109,8 @@ try:
                                         database=str(database_info.get("database_name"))))
 except:
     database = None
+else:
+    pass
 
 
 class User:

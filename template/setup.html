@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Setup</title>
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/default.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ static_url('css/setup.css') }}" />
 </head>
 <body>
 <div id="setup_title" class="info_block">
@@ -11,19 +12,15 @@
 </div>
 <div id="setup_div" class="info_block">
     <form method="post" id="info_form">
-        <p>
-            <h3>MySQL Server Information</h3>
-            {% for info in mysql_info %}
-            {{ info }}: <input type="text" name="{{ info }}" value="{{ mysql_info.get(info) }}" /><br />
-            {% end %}
-        </p>
-        <p>
-            <h3>Server Information</h3>
-            {% for info in server_info %}
-            {{ info }}: <input type="text" name="{{ info }}" value="{{ server_info.get(info) }}" /><br />
-            {% end %}
-        </p>
-        <input type="submit" value="Submit"/>
+        <h3>MySQL Server Information</h3>
+        {% for info in mysql_info %}
+        <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="text" name="{{ info }}" value="{{ mysql_info.get(info) }}" /></p>
+        {% end %}
+        <h3>Server Information</h3>
+        {% for info in server_info %}
+        <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="text" name="{{ info }}" value="{{ server_info.get(info) }}" /></p>
+        {% end %}
+        <input id="setup_div_submit" type="submit" value="Save" />
     </form>
 </div>
 </body>

@@ -56,3 +56,7 @@ Add some page style.
 #### Version 1.1.0
 Add style to all pages.  
 Add authority management system.
+
+#### Version 1.1.1
+Setup function.
+Automatically create tables.

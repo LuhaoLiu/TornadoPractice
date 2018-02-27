@@ -17,11 +17,19 @@
         <p class="attention">{{ warn }}</p>
         {% end %}
         {% for info in mysql_info %}
+        {% if info != "mysql_password" %}
         <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="text" name="{{ info }}" value="{{ mysql_info.get(info) }}" /></p>
+        {% else %}
+        <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="password" name="{{ info }}" /></p>
+        {% end %}
         {% end %}
         <h3>Server Information</h3>
         {% for info in server_info %}
+        {% if info != "cookie_secret" %}
         <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="text" name="{{ info }}" value="{{ server_info.get(info) }}" /></p>
+        {% else %}
+        <p class="setup_div_text">{{ info }}<br /><input class="setup_div_textbox" type="text" name="{{ info }}" /></p>
+        {% end %}
         {% end %}
         <input id="setup_div_submit" type="submit" value="Save" />
     </form>

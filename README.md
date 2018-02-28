@@ -58,5 +58,5 @@ Add style to all pages.
 Add authority management system.
 
 #### Version 1.1.1
-Setup function.
+Setup function.  
 Automatically create tables.

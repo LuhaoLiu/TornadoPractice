@@ -21,15 +21,32 @@
                 <input type="submit" name="type_name" value="avatar_upload" style="display: none;" />
             </form>
         </div>
-        {% end %}
         <ul id="user_information_list">
             <li><p class="user_information_list_left">Registered Time:
                 <span class="user_information_list_right"><b>{{ find_user.reg_time }}</b></span></p></li>
+            {% if user.uid == find_user.uid %}
+            <li><p class="user_information_list_left">Email:
+                <span class="user_information_list_right"><b>{{ find_user.email }}</b></span></p></li>
+            {% end %}
         </ul>
+        {% end %}
     </div>
+    {% if find_user.uid == user.uid %}
+    <div id="user_password_update" class="user_block">
+        <p class="user_block_title">Change Your Password</p>
+        <form name="password_form" method="post">
+            {% module xsrf_form_html() %}
+            <p class="user_password_update_text">Original Password</p><input type="password" name="original" class="textbox user_password_update_textbox" />
+            <p class="user_password_update_text">New Password</p><input type="password" name="new" class="textbox user_password_update_textbox" />
+            <p class="user_password_update_text">Repeat New Password</p><input type="password" name="repeat" class="textbox user_password_update_textbox" />
+            <div onclick="password_form.type_name.click()" id="user_password_update_submit" class="user_submit_button">Submit</div>
+            <input type="submit" name="type_name" value="user_pws_update" style="display: none;">
+        </form>
+    </div>
+    {% end %}
     {% if user.permission.get("admin") == 1 %}
-    <div id="user_admin">
-        <p>Authority Management</p>
+    <div id="user_admin" class="user_block">
+        <p class="user_block_title">Authority Management</p>
         <form name="user_admin_form" method="post">
             {% module xsrf_form_html() %}
             <p>

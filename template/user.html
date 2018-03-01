@@ -6,6 +6,7 @@
     <link type="text/css" rel="stylesheet" href="{{ static_url('css/user.css') }}" />
 {% end %}
 {% block main_body %}
+<script type="text/javascript" src="{{ static_url('js/user.js') }}"></script>
 <div id="user">
     <div id="user_information">
         <p id="user_information_username">
@@ -32,15 +33,15 @@
         {% end %}
     </div>
     {% if find_user.uid == user.uid %}
-    <div id="user_password_update" class="user_block">
-        <p class="user_block_title">Change Your Password</p>
-        <form name="password_form" method="post">
+    <div id="user_security" class="user_block">
+        <p class="user_block_title">User Security</p>
+        <form name="password_form" method="post" onsubmit="return user_password_form_check();">
             {% module xsrf_form_html() %}
-            <p class="user_password_update_text">Original Password</p><input type="password" name="original" class="textbox user_password_update_textbox" />
-            <p class="user_password_update_text">New Password</p><input type="password" name="new" class="textbox user_password_update_textbox" />
-            <p class="user_password_update_text">Repeat New Password</p><input type="password" name="repeat" class="textbox user_password_update_textbox" />
+            <p class="user_password_update_text">Original Password</p><input type="password" name="original" class="textbox user_password_update_textbox" required/>
+            <p class="user_password_update_text">New Password</p><input type="password" name="new" class="textbox user_password_update_textbox" onchange="repeat_password_check();" minlength="8" required/>
+            <p class="user_password_update_text">Repeat New Password</p><input type="password" name="repeat" class="textbox user_password_update_textbox" onchange="repeat_password_check();" minlength="8" required/>
             <div onclick="password_form.type_name.click()" id="user_password_update_submit" class="user_submit_button">Submit</div>
-            <input type="submit" name="type_name" value="user_pws_update" style="display: none;">
+            <input type="submit" name="type_name" value="user_pwd_update" style="display: none;">
         </form>
     </div>
     {% end %}

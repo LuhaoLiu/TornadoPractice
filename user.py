@@ -2,6 +2,7 @@ from base import BaseHandler, User, database
 from tornado.web import authenticated
 from os import path
 from PIL import Image
+from hashlib import sha256
 import tempfile
 import imghdr
 
@@ -18,7 +19,7 @@ class UserHandler(BaseHandler):
 
     @authenticated
     def post(self, username):
-        if str(self.get_argument("type_name")) == "avatar_upload":
+        if str(self.get_argument("type_name")) == "avatar_upload" and username == self.user.username:
             if self.request.files.get("avatar", None) is not None:
                 avatar = self.request.files.get("avatar")[0]
                 if avatar.get("content_type") != "image/jpeg" and avatar.get("content_type") != "image/png":
@@ -60,10 +61,29 @@ class UserHandler(BaseHandler):
                     permission.update(dict(admin=int(self.get_argument("admin", default=0))))
                     permission.update(dict(root=int(self.get_argument("root", default=0))))
                 database.update("ws_permission", values=permission, where="uid = '%s'" % find_user.uid)
-                self.render("template/warn.html", title="Success", user=self.user,
+                self.render("template/warn.html", title="Succeed", user=self.user,
                             information='<p>You have successfully uploaded this user\'s permission<br/>'
                                         'Click <a href="%s">here</a> to go back' % self.request.path)
             else:
                 self.render("template/warn.html", title="Error", user=self.user,
                             information='<p>Permission denied<br/>'
                                         'Click <a href="%s">here</a> to go back' % self.request.path)
+        elif str(self.get_argument("type_name")) == "user_pwd_update" and username == self.user.username:
+            if database.query("ws_account", "password", "uid = '%d'" % self.user.uid)[0][0] == \
+                    str(sha256(str(self.get_argument("original")).encode('utf-8')).hexdigest()):
+                self.render("template/warn.html", title="Succeed", user=self.user,
+                            information='<p>You have changed your password</p>'
+                                        'Click <a href="%s">here</a> to login' % "/login")
+                self.clear_cookie("session_id")
+                database.update("ws_account", {"session": ""}, "uid = '%d'" % self.user.uid)
+                database.update("ws_account",
+                                {"password": str(sha256(str(self.get_argument("new")).encode('utf-8')).hexdigest())},
+                                "uid = '%d'" % self.user.uid)
+            else:
+                self.render("template/warn.html", title="Error", user=self.user,
+                            information='<p>Invalid password</p>'
+                                        'Click <a href="%s">here</a> to go back' % self.request.path)
+        else:
+            self.render("template/warn.html", title="Error", user=self.user,
+                        information='<p>Unknown Error</p>'
+                                    'Click <a href="%s">here</a> to the index' % "/")

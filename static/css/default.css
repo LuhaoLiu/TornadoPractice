@@ -1,5 +1,5 @@
 a {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
     text-decoration: none;
 }
 a:hover {
@@ -50,7 +50,7 @@ label {
     border-radius: 2px;
     border: 1px solid whitesmoke;
 
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 
     box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.2);
 }

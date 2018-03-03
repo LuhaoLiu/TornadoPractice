@@ -79,7 +79,7 @@
 
     text-align: center;
 
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
     color: white;
     line-height: 30px;
 }
@@ -87,10 +87,10 @@
     background-color: dodgerblue;
 }
 .user_information_list_left {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 .user_information_list_right {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 .user_block_title {
     font-size: 18px;
@@ -130,7 +130,7 @@
 
     text-align: center;
 
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
     color: white;
     line-height: 30px;
 }

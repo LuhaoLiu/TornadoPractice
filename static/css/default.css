@@ -6,34 +6,34 @@ a:hover {
     text-decoration: underline;
 }
 p {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 h1 {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 h2 {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 h3 {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 h4 {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 h5 {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 h6 {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 input {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 span {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 label {
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 }
 .attention {
     color: orangered;

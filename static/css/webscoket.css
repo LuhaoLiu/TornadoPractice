@@ -29,7 +29,7 @@
     height: 20px;
 
     font-size: 12px;
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -41,7 +41,7 @@
     height: 23px;
 
     font-size: 12px;
-    font-family: Monaco;
+    font-family: Monaco, 'Trebuchet MS', 'Courier New';
 
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.5);

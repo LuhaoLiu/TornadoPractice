@@ -1,6 +1,6 @@
 # TornadoPractice
 Practice for using tornado.  
-Online multiplayer chat website with authentication function.  
+Online multiplayer chat website.  
 
 [DEMO](huadong.liuluhao.com:2333) is here.  
 

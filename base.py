@@ -49,11 +49,31 @@ def info_write_in_json(path, data):
         json.dump(data, f)
 
 
+def auto_reconnect(error):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except error:
+                database.reconnect()
+                return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
 class Database:
 
     def __init__(self, database):
         self.database = database
 
+    def reconnect(self):
+        self.database = pymysql.connect(host=str(database_info.get("mysql_host")),
+                                        port=int(database_info.get("mysql_port")),
+                                        user=str(database_info.get("mysql_user")),
+                                        passwd=str(database_info.get("mysql_password")),
+                                        database=str(database_info.get("database_name")))
+
+    @auto_reconnect((pymysql.err.InterfaceError, pymysql.err.OperationalError))
     def query(self, table_name, select='*', where='true'):
         query_sql = """SELECT %s FROM %s WHERE %s;""" % (select, table_name, where)
         self.database.commit()
@@ -63,6 +83,7 @@ class Database:
         cursor.close()
         return fetchall
 
+    @auto_reconnect((pymysql.err.InterfaceError, pymysql.err.OperationalError))
     def insert(self, table_name, **values):
         insert_sql = """INSERT INTO %s(""" % table_name
         for column in values:
@@ -78,6 +99,7 @@ class Database:
         self.database.commit()
         cursor.close()
 
+    @auto_reconnect((pymysql.err.InterfaceError, pymysql.err.OperationalError))
     def update(self, table_name, values, where):
         update_sql = """UPDATE %s SET """ % table_name
         for key in values:
@@ -89,6 +111,7 @@ class Database:
         self.database.commit()
         cursor.close()
 
+    @auto_reconnect((pymysql.err.InterfaceError, pymysql.err.OperationalError))
     def delete(self, table_name, where):
         delete_sql = """DELETE FROM %s WHERE %s;""" % (table_name, where)
         cursor = self.database.cursor()

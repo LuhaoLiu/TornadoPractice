@@ -1,9 +1,11 @@
 from base import database, BaseHandler, User
 from tornado.websocket import WebSocketHandler
 from tornado.web import authenticated
+from functools import reduce
 import base64
 import time
 import json
+
 
 on_line_users = []
 
@@ -27,12 +29,18 @@ class WSServerHandler(WebSocketHandler, BaseHandler):
     @authenticated
     def open(self):
         if self.has_permission("connect"):
-            on_line_users.append(self)
-            data = dict(type='user', username=self.user.username, action='joined')
-            self.send_all(data)
+            if list(map(lambda u: True if u.user.username == self.user.username else False, on_line_users)).count(True) == 0:
+                on_line_users.append(self)
+                data = dict(type='user', username=self.user.username, action='joined')
+                self.send_all(data)
+            else:
+                data = dict(type="denied", permission="connect(Only one device at most)")
+                self.write_message(json.dumps(data))
+                self.close()
         else:
             data = dict(type="denied", permission="connect")
             self.write_message(json.dumps(data))
+            self.close()
 
     def on_message(self, message):
         if self.has_permission("speak") and self.has_permission("connect"):
@@ -48,8 +56,11 @@ class WSServerHandler(WebSocketHandler, BaseHandler):
             self.write_message(json.dumps(data))
 
     def on_close(self):
-        if self.has_permission("connect"):
+        try:
             on_line_users.remove(self)
+        except ValueError:
+            pass
+        else:
             data = dict(type='user', username=self.user.username, action='left')
             self.send_all(data)
 

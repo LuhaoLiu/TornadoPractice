@@ -11,11 +11,15 @@ class UserHandler(BaseHandler):
 
     @authenticated
     def get(self, username):
-        user = User(username)
-        if user.uid is None:
+        try:
+            user = User(username)
+        except TypeError:
             self.write_error(404, "User not found")
         else:
-            self.render("template/user.html", user=self.user, find_user=user)
+            if user.uid is None:
+                self.write_error(404, "User not found")
+            else:
+                self.render("template/user.html", user=self.user, find_user=user)
 
     @authenticated
     def post(self, username):

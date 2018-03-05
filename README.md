@@ -2,7 +2,7 @@
 Practice for using tornado.  
 Online multiplayer chat website.  
 
-[DEMO](huadong.liuluhao.com:2333) is here.  
+[DEMO](http://sv.liuluhao.com/) is here.  
 
 Used packages: `pymysql`, `tornado`, `Pillow`  
 

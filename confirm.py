@@ -1,11 +1,12 @@
 from base import BaseHandler
 from tornado.web import authenticated
-from base import database, has_user, email_check, username_check
+from base import database, has_user, email_check, username_check, User
 from hashlib import sha256, md5
 from random import randint, choice
 from string import ascii_letters, digits
 from urllib import request
 from os import path
+from webscoket import on_line_users
 import time
 
 
@@ -58,6 +59,10 @@ class LoginHandler(BaseHandler):
                         text="User do not exist or invalid password",
                         default=dict(user=user))
         elif str(real_pwd[0][0]) == str(sha256(pwd.encode('utf-8')).hexdigest()):
+            for ws_user in on_line_users:
+                if ws_user.user.username == username:
+                    ws_user.close()
+                    break
             random_string = ''.join(choice(ascii_letters + digits) for _ in range(randint(5, 20))).encode('utf-8')
             if self.get_argument("remember", default=None) is None:
                 if randint(0, 1):

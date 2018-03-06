@@ -1,8 +1,7 @@
-let ws = new WebSocket("ws://"+ window.location.host + "/ws")
+var ws = new WebSocket("ws://"+ window.location.host + "/ws")
 
 
 ws.onmessage = function (event) {
-
     let data = JSON.parse(event.data);
     if(data.type == "message") {
         let username = data.username;
@@ -32,12 +31,20 @@ ws.onmessage = function (event) {
 }
 
 
+ws.onclose = function () {
+    ws = null
+}
+
+
 function send(message) {
     if (message == null || message === "" || RegExp("^[ ]+$").test(message)) {
         document.getElementById("ws_attention").innerText = "Message cannot be empty";
     }
     else if (message.length > 100) {
         document.getElementById("ws_attention").innerText = "The max length of message is 100";
+    }
+    else if (ws == null) {
+        alert("WebSocket is already in CLOSING or CLOSED state")
     }
     else {
         document.getElementById("ws_attention").innerText = "";

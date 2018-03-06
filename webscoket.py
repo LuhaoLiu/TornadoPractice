@@ -1,7 +1,6 @@
 from base import database, BaseHandler, User
 from tornado.websocket import WebSocketHandler
 from tornado.web import authenticated
-from functools import reduce
 import base64
 import time
 import json
@@ -56,12 +55,12 @@ class WSServerHandler(WebSocketHandler, BaseHandler):
             self.write_message(json.dumps(data))
 
     def on_close(self):
+        data = dict(type='user', username=self.user.username, action='left')
         try:
             on_line_users.remove(self)
         except ValueError:
             pass
         else:
-            data = dict(type='user', username=self.user.username, action='left')
             self.send_all(data)
 
     def send_all(self, data):

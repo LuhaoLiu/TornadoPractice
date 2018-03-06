@@ -22,10 +22,12 @@
                 <input type="submit" name="type_name" value="avatar_upload" style="display: none;" />
             </form>
         </div>
+        {% end %}
+        {% if user.uid == find_user.uid or user.permission.get("admin") == 1 %}
         <ul id="user_information_list">
             <li><p class="user_information_list_left">Registered Time:
                 <span class="user_information_list_right"><b>{{ find_user.reg_time }}</b></span></p></li>
-            {% if user.uid == find_user.uid %}
+            {% if user.uid == find_user.uid or user.permission.get("admin") == 1 %}
             <li><p class="user_information_list_left">Email:
                 <span class="user_information_list_right"><b>{{ find_user.email }}</b></span></p></li>
             {% end %}

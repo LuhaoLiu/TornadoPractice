@@ -55,13 +55,14 @@ class WSServerHandler(WebSocketHandler, BaseHandler):
             self.write_message(json.dumps(data))
 
     def on_close(self):
-        data = dict(type='user', username=self.user.username, action='left')
         try:
             on_line_users.remove(self)
         except ValueError:
             pass
         else:
-            self.send_all(data)
+            if self.user is not None:
+                data = dict(type='user', username=self.user.username, action='left')
+                self.send_all(data)
 
     def send_all(self, data):
         for user in on_line_users:

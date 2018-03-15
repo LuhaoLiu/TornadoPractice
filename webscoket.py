@@ -30,6 +30,7 @@ class WSServerHandler(WebSocketHandler, BaseHandler):
         if self.has_permission("connect"):
             if list(map(lambda u: True if u.user.username == self.user.username else False, on_line_users)).count(True) == 0:
                 on_line_users.append(self)
+                self.latest_speak_time = 0.0
                 data = dict(type='user', username=self.user.username, action='joined')
                 self.send_all(data)
             else:
@@ -43,12 +44,18 @@ class WSServerHandler(WebSocketHandler, BaseHandler):
 
     def on_message(self, message):
         if self.has_permission("speak") and self.has_permission("connect"):
+            if time.time() - self.latest_speak_time <= 0.9:
+                data = dict(type="attention", content="An error has occurred")
+                self.write_message(json.dumps(data))
+                self.close()
+                return
             data = dict(type='message', message=message, username=self.user.username)
             database.insert("ws_record", **{
                 "uid": str(self.user.uid),
                 "content": str(base64.b64encode(bytes(message, encoding='utf-8')), encoding='utf-8'),
                 "date": str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             })
+            self.latest_speak_time = time.time()
             self.send_all(data)
         else:
             data = dict(type="denied", permission="speak")

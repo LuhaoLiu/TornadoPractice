@@ -28,6 +28,9 @@ ws.onmessage = function (event) {
     else if(data.type == "denied") {
         window.alert("You don't has the permission to " + data.permission);
     }
+    else if(data.type == "attention") {
+        window.alert(data.content)
+    }
 }
 
 
@@ -50,5 +53,7 @@ function send(message) {
         document.getElementById("ws_attention").innerText = "";
         document.getElementById("ws_message_send_textbox").value = "";
         ws.send(message)
+        document.getElementById("ws_message_send_textbox").setAttribute("readonly", "true")
+        setTimeout("document.getElementById(\"ws_message_send_textbox\").removeAttribute(\"readonly\")", 1000)
     }
 }

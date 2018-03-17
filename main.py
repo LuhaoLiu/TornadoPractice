@@ -1,5 +1,6 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
+from tornado.httpserver import HTTPServer
 from base import BaseHandler, info_load_from_json, database
 from index import IndexHandler
 from confirm import LoginHandler, LogoutHandler, RegisterHandler
@@ -43,15 +44,19 @@ if __name__ == "__main__":
             server_info = info_load_from_json(path.join(path.realpath(path.dirname(__file__)), "info", "server.json"))
             settings.update(cookie_secret=server_info.get("cookie_secret"))
             app = make_app()
-            app.listen(server_info.get("port"))
+            server = HTTPServer(app)
+            server.listen(server_info.get("port"))
             print("Server successfully started.")
-        except:
+        except Exception as e:
+            print(e)
             app = make_setup_app()
-            app.listen(8080)
+            server = HTTPServer(app)
+            server.listen(8080)
     else:
         print("Server successfully started.")
         app = make_setup_app()
-        app.listen(8080)
+        server = HTTPServer(app)
+        server.listen(8080)
     try:
         IOLoop.current().start()
     except KeyboardInterrupt:

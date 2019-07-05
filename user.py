@@ -1,7 +1,6 @@
 from base import BaseHandler, User, database
 from tornado.web import authenticated
 from os import path
-from PIL import Image
 from hashlib import sha256
 import tempfile
 import imghdr

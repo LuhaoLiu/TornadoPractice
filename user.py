@@ -2,6 +2,7 @@ from base import BaseHandler, User, database
 from tornado.web import authenticated
 from os import path
 from hashlib import sha256
+from PIL import Image
 import tempfile
 import imghdr
 
@@ -50,7 +51,7 @@ class UserHandler(BaseHandler):
                         temp_avatar_file.close()
                         self.render("template/warn.html", title="Success", user=self.user,
                                     information='<p>You have successfully uploaded your avatar<br/>'
-                                                'Please force refresh to clear the clear</p><br/>'
+                                                'Please force refresh to clear the cache</p><br/>'
                                                 'Click <a href="%s">here</a> to go back' % self.request.path)
         elif str(self.get_argument("type_name")) == "user_admin":
             if self.user.permission.get("admin") == 1:
